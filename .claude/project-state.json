@@ -1,0 +1,285 @@
+{
+    "project": {
+      "name": "InvestorPro SaaS",
+      "description": "Transformación de MicroRealEstate en SaaS multi-tenant para inversores inmobiliarios",
+      "version": "0.1.0-alpha",
+      "phase": "Setup & Planning",
+      "startDate": "2025-08-15",
+      "repository": "https://github.com/zepolnala/microrealestate",
+      "originalRepo": "https://github.com/microrealestate/microrealestate",
+      "license": "MIT"
+    },
+    "currentStatus": {
+      "sprint": 1,
+      "sprintName": "Foundation & Landing",
+      "sprintDuration": "Semanas 1-2",
+      "completionPercentage": 15,
+      "lastUpdate": "2025-08-15",
+      "currentTask": "Setup del monorepo con npm workspaces",
+      "blockers": [
+        "Material-UI v4 conflict with React 18 (RESUELTO con --legacy-peer-deps)"
+      ],
+      "environment": {
+        "development": {
+          "status": "functional",
+          "installation": "npm install --legacy-peer-deps",
+          "runCommand": "npm run dev",
+          "ports": {
+            "landlord": "http://localhost:8080/landlord",
+            "tenant": "http://localhost:8080/tenant"
+          }
+        }
+      }
+    },
+    "architecture": {
+      "approach": "Hybrid - MicroRealEstate base + OpenSaaS patterns",
+      "pattern": "Monorepo with npm workspaces",
+      "multiTenancy": "Shared Database + Tenant ID",
+      "targetStack": {
+        "frontend": [
+          "Next.js 14",
+          "TypeScript",
+          "Tailwind CSS",
+          "shadcn/ui",
+          "Recharts",
+          "React Query"
+        ],
+        "backend": [
+          "Node.js",
+          "Express",
+          "TypeScript",
+          "MongoDB",
+          "Redis",
+          "JWT Auth"
+        ],
+        "payments": "Stripe",
+        "email": "SendGrid/Mailgun",
+        "analytics": "Plausible",
+        "deployment": "Docker + Docker Compose"
+      },
+      "currentStack": {
+        "frontend": [
+          "React 18",
+          "Material-UI v4",
+          "JavaScript"
+        ],
+        "backend": [
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "JavaScript"
+        ]
+      }
+    },
+    "folderStructure": {
+      "apps": {
+        "landing": {
+          "status": "planned",
+          "framework": "Next.js 14",
+          "purpose": "Marketing website"
+        },
+        "dashboard": {
+          "status": "planned",
+          "framework": "Next.js 14",
+          "purpose": "Main SaaS application"
+        },
+        "admin": {
+          "status": "planned",
+          "framework": "Next.js 14",
+          "purpose": "Super admin panel"
+        },
+        "docs": {
+          "status": "planned",
+          "framework": "Astro",
+          "purpose": "Documentation site"
+        }
+      },
+      "services": {
+        "api": {
+          "status": "exists-needs-enhancement",
+          "purpose": "Main API with multi-tenant support"
+        },
+        "billing-service": {
+          "status": "planned",
+          "purpose": "Stripe integration"
+        },
+        "notification-service": {
+          "status": "planned",
+          "purpose": "Email & push notifications"
+        },
+        "analytics-service": {
+          "status": "planned",
+          "purpose": "Metrics & AI insights"
+        }
+      },
+      "packages": {
+        "ui": {
+          "status": "planned",
+          "purpose": "Shared UI components"
+        },
+        "types": {
+          "status": "planned",
+          "purpose": "Shared TypeScript types"
+        },
+        "config": {
+          "status": "planned",
+          "purpose": "Shared configurations"
+        },
+        "utils": {
+          "status": "planned",
+          "purpose": "Shared utilities"
+        }
+      }
+    },
+    "businessModel": {
+      "type": "SaaS",
+      "pricing": {
+        "starter": {
+          "price": 29,
+          "currency": "EUR",
+          "period": "monthly",
+          "features": [
+            "5 properties max",
+            "Basic tenant management",
+            "Monthly reports",
+            "Email support"
+          ]
+        },
+        "professional": {
+          "price": 79,
+          "currency": "EUR",
+          "period": "monthly",
+          "features": [
+            "25 properties max",
+            "Advanced analytics + ROI",
+            "AI recommendations",
+            "Bank integration",
+            "3 team members",
+            "Priority support"
+          ],
+          "mostPopular": true
+        },
+        "enterprise": {
+          "price": 199,
+          "currency": "EUR",
+          "period": "monthly",
+          "features": [
+            "Unlimited properties",
+            "White-label branding",
+            "Full API access",
+            "Unlimited users",
+            "Custom integrations",
+            "Dedicated success manager"
+          ]
+        }
+      },
+      "freeTrial": {
+        "duration": 14,
+        "unit": "days"
+      }
+    },
+    "targetUsers": {
+      "primary": "Real estate investors",
+      "secondary": "Property management companies",
+      "personas": [
+        {
+          "name": "Individual Investor",
+          "properties": "1-5",
+          "pain": "Manual tracking, Excel spreadsheets"
+        },
+        {
+          "name": "Professional Investor",
+          "properties": "6-25",
+          "pain": "ROI analysis, portfolio optimization"
+        },
+        {
+          "name": "Investment Company",
+          "properties": "25+",
+          "pain": "Team collaboration, advanced analytics"
+        }
+      ]
+    },
+    "keyFeatures": {
+      "completed": [],
+      "inProgress": [
+        "Project architecture design",
+        "Wireframes and UX design"
+      ],
+      "planned": [
+        "Multi-tenant authentication",
+        "ROI tracking per property",
+        "Cash flow projections",
+        "Market intelligence",
+        "Smart alerts",
+        "Automated reports",
+        "AI insights",
+        "Price recommendations",
+        "Tenant management",
+        "Property portfolio management",
+        "Billing & subscriptions",
+        "Team collaboration",
+        "Mobile app (React Native)"
+      ]
+    },
+    "integrations": {
+      "planned": [
+        "Stripe (payments)",
+        "OpenAI (AI insights)",
+        "SendGrid (email)",
+        "Plausible (analytics)",
+        "Banking APIs (future)",
+        "Real estate data APIs (future)"
+      ]
+    },
+    "team": {
+      "client": {
+        "name": "Alan",
+        "role": "Product Owner / Real Estate Investor",
+        "experience": "Experienced investor",
+        "location": "Valencia, Spain"
+      },
+      "developer": {
+        "name": "Claude",
+        "role": "AI Development Assistant",
+        "expertise": ["Architecture", "Full-stack development", "SaaS patterns"]
+      }
+    },
+    "development": {
+      "methodology": "Agile Sprints",
+      "sprintDuration": "2 weeks",
+      "totalSprints": 3,
+      "totalDuration": "6 weeks",
+      "tools": [
+        "npm workspaces",
+        "TypeScript",
+        "ESLint + Prettier",
+        "Husky pre-commit hooks",
+        "Docker",
+        "GitHub"
+      ]
+    },
+    "risks": {
+      "technical": [
+        "Material-UI v4 to shadcn/ui migration complexity",
+        "Multi-tenant data isolation implementation",
+        "Real-time analytics performance"
+      ],
+      "business": [
+        "Market competition",
+        "User adoption",
+        "Pricing validation"
+      ]
+    },
+    "success_metrics": {
+      "technical": [
+        "Page load time < 2s",
+        "99.9% uptime",
+        "Zero data leakage between tenants"
+      ],
+      "business": [
+        "10 paying customers in first month",
+        "5% monthly churn rate",
+        "€10k MRR in 6 months"
+      ]
+    }
+  }

@@ -1,0 +1,338 @@
+{
+    "projectDecisions": {
+      "lastUpdated": "2025-08-15",
+      "version": "1.0.0",
+      "decisions": [
+        {
+          "id": "ARCH-001",
+          "date": "2025-08-15",
+          "title": "Base Architecture Choice",
+          "description": "Decidir entre OpenSaaS framework vs desarrollo propio",
+          "options": [
+            {
+              "name": "OpenSaaS (Wasp framework)",
+              "pros": ["Stack moderno", "Features SaaS incluidas", "Documentación"],
+              "cons": ["Curva aprendizaje", "Migración completa", "Menor flexibilidad"]
+            },
+            {
+              "name": "Desarrollo propio + MicroRealEstate base",
+              "pros": ["Lógica RE existente", "Control total", "Stack conocido"],
+              "cons": ["Más tiempo desarrollo", "Implementar SaaS desde cero"]
+            },
+            {
+              "name": "Híbrido: MicroRealEstate + OpenSaaS patterns",
+              "pros": ["Best of both worlds", "Rápido desarrollo", "Flexibilidad"],
+              "cons": ["Complejidad inicial"]
+            }
+          ],
+          "decision": "Híbrido: MicroRealEstate + OpenSaaS patterns",
+          "rationale": "Aprovecha la lógica de negocio real estate existente mientras adopta mejores prácticas SaaS de OpenSaaS",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "TECH-001",
+          "date": "2025-08-15",
+          "title": "Frontend Framework Selection",
+          "description": "Elegir framework para las nuevas aplicaciones frontend",
+          "options": [
+            {
+              "name": "React (mantener actual)",
+              "pros": ["Consistencia", "Conocimiento existente"],
+              "cons": ["Material-UI v4 deprecated", "No SSR/SSG"]
+            },
+            {
+              "name": "Next.js 14",
+              "pros": ["SSR/SSG", "App Router", "Performance", "SEO", "shadcn/ui compatibility"],
+              "cons": ["Migración necesaria"]
+            }
+          ],
+          "decision": "Next.js 14 para nuevas apps",
+          "rationale": "Mejor SEO para landing page, performance superior, ecosistema moderno",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "ARCH-002",
+          "date": "2025-08-15",
+          "title": "Project Structure Pattern",
+          "description": "Definir organización del código y proyectos",
+          "options": [
+            {
+              "name": "Micro-frontend separado",
+              "pros": ["Independencia", "Deploy separado"],
+              "cons": ["Complejidad", "Duplicación código"]
+            },
+            {
+              "name": "Monorepo con workspaces",
+              "pros": ["Código compartido", "Deploy coordinado", "Atomic components"],
+              "cons": ["Build complexity inicial"]
+            }
+          ],
+          "decision": "Monorepo con npm workspaces",
+          "rationale": "Facilita reutilización de componentes, simplifica desarrollo, mejor para equipo pequeño",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "UI-001",
+          "date": "2025-08-15",
+          "title": "UI Component Library",
+          "description": "Elegir librería de componentes para el nuevo diseño",
+          "options": [
+            {
+              "name": "Material-UI v5",
+              "pros": ["Migración incremental", "Conocimiento existente"],
+              "cons": ["Pesado", "Menos moderno", "Customización limitada"]
+            },
+            {
+              "name": "shadcn/ui + Tailwind",
+              "pros": ["Moderno", "Customizable", "Performance", "Copy-paste components"],
+              "cons": ["Migración completa necesaria"]
+            },
+            {
+              "name": "Chakra UI",
+              "pros": ["Simple", "Modular"],
+              "cons": ["Menos momentum", "Bundle size"]
+            }
+          ],
+          "decision": "shadcn/ui + Tailwind CSS",
+          "rationale": "Máxima flexibilidad de diseño, performance superior, componentes atómicos, moderno",
+          "impact": "Medium",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "DB-001",
+          "date": "2025-08-15",
+          "title": "Database Strategy for Multi-tenancy",
+          "description": "Definir approach para aislamiento de datos entre tenants",
+          "options": [
+            {
+              "name": "Database per tenant",
+              "pros": ["Aislamiento total", "Escalabilidad"],
+              "cons": ["Complejidad operacional", "Costo"]
+            },
+            {
+              "name": "Schema per tenant",
+              "pros": ["Aislamiento bueno", "Gestión media"],
+              "cons": ["Complejidad PostgreSQL"]
+            },
+            {
+              "name": "Shared database + tenant_id",
+              "pros": ["Simplicidad", "Costo eficiente", "Compatible con MongoDB"],
+              "cons": ["Riesgo data leakage"]
+            }
+          ],
+          "decision": "Shared database + tenant_id",
+          "rationale": "Más simple para MVP, compatible con MongoDB existente, escalable con buenas prácticas",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "AUTH-001",
+          "date": "2025-08-15",
+          "title": "Authentication Strategy",
+          "description": "Sistema de autenticación para multi-tenant SaaS",
+          "options": [
+            {
+              "name": "Auth0 / Firebase Auth",
+              "pros": ["Plug & play", "Escalabilidad", "Social login"],
+              "cons": ["Costo", "Vendor lock-in", "Customización limitada"]
+            },
+            {
+              "name": "JWT + Refresh tokens custom",
+              "pros": ["Control total", "No costo adicional", "Flexibilidad"],
+              "cons": ["Desarrollo desde cero", "Seguridad responsabilidad nuestra"]
+            }
+          ],
+          "decision": "JWT + Refresh tokens custom",
+          "rationale": "Mayor control sobre flujos multi-tenant, no costo adicional, flexibilidad total",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "PAY-001",
+          "date": "2025-08-15",
+          "title": "Payment Provider Selection",
+          "description": "Proveedor de pagos y billing para suscripciones SaaS",
+          "options": [
+            {
+              "name": "Stripe",
+              "pros": ["Líder mercado", "Documentación excelente", "Webhooks robustos"],
+              "cons": ["Fees 2.9%", "Complejidad inicial"]
+            },
+            {
+              "name": "Paddle",
+              "pros": ["Merchant of record", "Taxes incluidos"],
+              "cons": ["Menor flexibilidad", "Documentación inferior"]
+            },
+            {
+              "name": "Lemon Squeezy",
+              "pros": ["Simple setup", "Merchant of record"],
+              "cons": ["Menos features", "Menos maduro"]
+            }
+          ],
+          "decision": "Stripe",
+          "rationale": "Ecosistema más robusto, mejor documentación, máxima flexibilidad para casos de uso complejos",
+          "impact": "Medium",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "DEV-001",
+          "date": "2025-08-15",
+          "title": "Development Timeline",
+          "description": "Estructura y duración del plan de desarrollo",
+          "options": [
+            {
+              "name": "3 meses de desarrollo completo",
+              "pros": ["Tiempo para features avanzadas", "Testing exhaustivo"],
+              "cons": ["Time to market lento", "Riesgo scope creep"]
+            },
+            {
+              "name": "6 semanas para MVP funcional",
+              "pros": ["Rápido time to market", "Feedback temprano", "Validación"],
+              "cons": ["Features limitadas inicial"]
+            }
+          ],
+          "decision": "6 semanas para MVP funcional",
+          "rationale": "Validar mercado rápido, feedback temprano de usuarios, iteración ágil",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "PRICE-001",
+          "date": "2025-08-15",
+          "title": "Pricing Strategy",
+          "description": "Modelo de precios para los planes SaaS",
+          "options": [
+            {
+              "name": "Pricing basado en usuarios",
+              "pros": ["Escalabilidad clara", "Modelo común"],
+              "cons": ["Puede limitar adoption"]
+            },
+            {
+              "name": "Pricing basado en propiedades",
+              "pros": ["Alineado con valor", "Específico del dominio"],
+              "cons": ["Menos común en SaaS"]
+            },
+            {
+              "name": "Pricing por tiers de valor",
+              "pros": ["Maximiza revenue", "Segmentación clara"],
+              "cons": ["Complejidad en límites"]
+            }
+          ],
+          "decision": "Pricing por tiers de valor (€29/€79/€199)",
+          "rationale": "Segmentación clara por tipo de inversor, maximiza revenue por tier, valor percibido alto",
+          "impact": "High",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "UX-001",
+          "date": "2025-08-15",
+          "title": "Landing Page Strategy",
+          "description": "Enfoque y diseño para la página de marketing",
+          "options": [
+            {
+              "name": "Enfoque técnico (features)",
+              "pros": ["Detalles completos", "Transparencia"],
+              "cons": ["Menos emotional appeal"]
+            },
+            {
+              "name": "Enfoque en beneficios ROI",
+              "pros": ["Conecta con pain points", "Value proposition claro"],
+              "cons": ["Necesita proof points"]
+            }
+          ],
+          "decision": "Enfoque en beneficios ROI",
+          "rationale": "Los inversores se mueven por ROI y valor financiero, más que por features técnicos",
+          "impact": "Medium",
+          "status": "Approved",
+          "stakeholders": ["Alan", "Claude"]
+        },
+        {
+          "id": "MOB-001",
+          "date": "2025-08-15",
+          "title": "Mobile Strategy",
+          "description": "Approach para acceso mobile al SaaS",
+          "options": [
+            {
+              "name": "Progressive Web App (PWA)",
+              "pros": ["Único codebase", "Deploy web", "Cross-platform"],
+              "cons": ["Limitaciones nativas", "Performance inferior"]
+            },
+            {
+              "name": "React Native app",
+              "pros": ["Performance nativa", "Push notifications", "Mejor UX"],
+              "cons": ["Desarrollo adicional", "Deploy complejidad"]
+            },
+            {
+              "name": "Solo responsive web",
+              "pros": ["Simple", "Sin desarrollo adicional"],
+              "cons": ["UX mobile limitada", "No push notifications"]
+            }
+          ],
+          "decision": "React Native app (futuro sprint)",
+          "rationale": "Inversores necesitan acceso móvil para gestión on-the-go, push notifications críticas",
+          "impact": "Medium",
+          "status": "Approved - Future Sprint",
+          "stakeholders": ["Alan", "Claude"]
+        }
+      ]
+    },
+    "rejectedApproaches": [
+      {
+        "approach": "Full migration to Wasp framework",
+        "reason": "Perdería toda la lógica de negocio real estate ya implementada",
+        "date": "2025-08-15"
+      },
+      {
+        "approach": "Database per tenant",
+        "reason": "Complejidad operacional muy alta para MVP",
+        "date": "2025-08-15"
+      },
+      {
+        "approach": "Material-UI v5 migration",
+        "reason": "shadcn/ui ofrece mejor flexibilidad y performance",
+        "date": "2025-08-15"
+      }
+    ],
+    "pendingDecisions": [
+      {
+        "id": "HOST-001",
+        "title": "Hosting Strategy",
+        "description": "Decidir hosting para frontend y backend",
+        "options": ["Vercel + Railway", "AWS", "DigitalOcean"],
+        "deadline": "Sprint 2",
+        "priority": "Medium"
+      },
+      {
+        "id": "AI-001",
+        "title": "AI Provider Selection",
+        "description": "Elegir proveedor para features de IA",
+        "options": ["OpenAI", "Anthropic Claude", "Local models"],
+        "deadline": "Sprint 3",
+        "priority": "Low"
+      }
+    ],
+    "changeLogs": [
+      {
+        "date": "2025-08-15",
+        "changes": [
+          "Initial decisions log created",
+          "All major architectural decisions documented",
+          "Pricing strategy finalized",
+          "Development timeline approved"
+        ],
+        "author": "Claude + Alan"
+      }
+    ]
+  }

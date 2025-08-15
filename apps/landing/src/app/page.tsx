@@ -1,6 +1,7 @@
 import { Hero } from '@/components/sections/Hero'
 import { Features } from '@/components/sections/features'
 import { Pricing } from '@/components/sections/Pricing'
+import CTASection from '@/components/CTASection';  // 👈 CAMBIAR ESTO
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
       <Hero />
       <Features />
       <Pricing />
+      <CTASection />  
     </main>
   )
 }

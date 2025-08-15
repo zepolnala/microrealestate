@@ -1,7 +1,7 @@
 // apps/landing/src/components/sections/CTA.tsx
 'use client'
 
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Rocket, Calendar } from 'lucide-react'
 
 export function CTA() {

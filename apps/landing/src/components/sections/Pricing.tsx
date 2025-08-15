@@ -1,7 +1,7 @@
 // apps/landing/src/components/sections/Pricing.tsx
 'use client'
 
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Check, Star } from 'lucide-react'
 
 const plans = [

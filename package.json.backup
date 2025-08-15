@@ -1,0 +1,71 @@
+{
+  "name": "investorpro-saas",
+  "version": "1.0.0",
+  "description": "SaaS multi-tenant platform for real estate investors - Transform MicroRealEstate into professional investment management tool",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    
+    "dev:landing": "npm run dev --workspace=apps/landing",
+    "dev:dashboard": "npm run dev --workspace=apps/dashboard",
+    "dev:admin": "npm run dev --workspace=apps/admin",
+    
+    "build:landing": "npm run build --workspace=apps/landing",
+    "build:dashboard": "npm run build --workspace=apps/dashboard",
+    "build:admin": "npm run build --workspace=apps/admin",
+    
+    "install:all": "npm install --workspaces",
+    "install:landing": "npm install --workspace=apps/landing",
+    "install:dashboard": "npm install --workspace=apps/dashboard",
+    
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    
+    "docker:dev": "docker-compose -f infrastructure/docker/docker-compose.dev.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker/docker-compose.dev.yml down",
+    "docker:build": "docker-compose -f infrastructure/docker/docker-compose.dev.yml build"
+  },
+  "keywords": [
+    "real-estate",
+    "investment",
+    "saas",
+    "multi-tenant",
+    "portfolio-management",
+    "roi-analytics",
+    "property-management"
+  ],
+  "author": "Alan - Real Estate Investor",
+  "license": "PRIVATE",
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^14.0.0",
+    "prettier": "^3.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "turbo": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zepolnala/microrealestate"
+  },
+  "homepage": "https://github.com/zepolnala/microrealestate#readme",
+  "bugs": {
+    "url": "https://github.com/zepolnala/microrealestate/issues"
+  }
+}

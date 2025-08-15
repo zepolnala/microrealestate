@@ -1,75 +1,46 @@
 {
-  "name": "microrealestate",
-  "version": "1.0.0-alpha.1",
-  "description": "The application which helps the landlords to manage their property rents.",
+  "name": "investorpro-saas",
+  "version": "1.0.0",
+  "description": "SaaS multi-tenant platform for real estate investors - Transform MicroRealEstate into professional investment management tool",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/microrealestate/microrealestate.git"
-  },
-  "keywords": [
-    "property management",
-    "real-estate",
-    "rents",
-    "tenants",
-    "landlord",
-    "open-source"
-  ],
-  "author": "Camel Aissani",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/microrealestate/microrealestate/issues"
-  },
-  "homepage": "https://github.com/microrealestate/microrealestate#readme",
   "workspaces": [
-    "cli",
-    "e2e",
-    "services/*",
-    "webapps/*",
-    "types"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "e2e:ci": "yarn workspace @microrealestate/e2e run cypress:ci",
-    "e2e:run": "yarn workspace @microrealestate/e2e run cypress:run",
-    "e2e:open": "yarn workspace @microrealestate/e2e run cypress:open",
-    "format": "yarn workspaces foreach run format",
-    "lint": "yarn workspaces foreach -pv run lint",
-    "dev": "cross-env MRE_VERSION=dev node cli/src/index.js dev",
-    "mre": "cross-env MRE_VERSION=local node cli/src/index.js",
-    "build": "yarn run mre build",
-    "start": "yarn run mre start",
-    "stop": "yarn run mre stop",
-    "ci": "yarn run mre ci",
-    "prepare": "husky install"
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    "dev:landing": "npm run dev --workspace=apps/landing",
+    "dev:dashboard": "npm run dev --workspace=apps/dashboard",
+    "build:landing": "npm run build --workspace=apps/landing",
+    "build:dashboard": "npm run build --workspace=apps/dashboard",
+    "install:all": "npm install --workspaces",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "docker:dev": "docker-compose -f infrastructure/docker/docker-compose.dev.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker/docker-compose.dev.yml down"
   },
-  "lint-staged": {
-    "*.{js,ts,tsx,jsx}": [
-      "eslint --quiet --fix",
-      "git add"
-    ],
-    "*.{json,md,html,js,jsx,ts,tsx}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
+  "keywords": [
+    "real-estate",
+    "investment",
+    "saas",
+    "multi-tenant",
+    "portfolio-management"
+  ],
+  "author": "Alan - Real Estate Investor",
+  "license": "PRIVATE",
   "devDependencies": {
-    "cross-env": "7.0.3",
-    "husky": "9.1.7",
-    "lint-staged": "15.4.3",
-    "prettier": "3.5.2"
-  },
-  "resolutions": {
-    "axios": "1.8.4",
-    "braces": "3.0.3",
-    "cross-spawn": "7.0.5",
-    "esbuild": "0.25.0",
-    "nanoid": "3.3.8",
-    "path-to-regexp": "0.1.12",
-    "tar-fs": "3.0.9",
-    "typescript": "5.5.4"
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0"
   },
   "engines": {
-    "node": "v20"
-  },
-  "packageManager": "yarn@3.3.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
 }
